@@ -9,7 +9,15 @@
 	}
 	if($OK && $type == "link")
 	{
-		echo file_get_contents($data);
+		$ch = curl_init($data);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$response = curl_exec($ch);
+		$content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+		curl_close($ch);
+		header('Content-Type: '.$content_type);
+		echo $response;
+		//echo $content_type;
+		//echo file_get_contents($data);
 		exit();
 	}
 	if($OK && $type == "web")

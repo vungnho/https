@@ -8,14 +8,20 @@ function xPHP() {
 			$uri = '';
 		setcookie('lastPage', $host.$uri, 0, '/', null, true, true);
 		//echo ($host.$uri);
-		$content = file_get_contents($host.$uri);
+		//$content = file_get_contents($host.$uri);
+		$ch = curl_init($data);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$content = curl_exec($ch);
+		$content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+		curl_close($ch);
+		header('Content-Type: '.$content_type);
 		if($content != '') {
 			echo str_replace($host,'',$content);
 			//echo $content;
 		}
 		exit();
 	}
-	echo "<!-- null -->\n";
+	echo " \n";
 }
 xPHP();
 
