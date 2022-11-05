@@ -9,7 +9,7 @@ function xPHP() {
 		setcookie('lastPage', $host.$uri, 0, '/', null, true, true);
 		//echo ($host.$uri);
 		//$content = file_get_contents($host.$uri);
-		$ch = curl_init($data);
+		$ch = curl_init($host.$uri);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		$content = curl_exec($ch);
 		$content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
