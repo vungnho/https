@@ -1,0 +1,11 @@
+#Block all - we don't want you to check anything at this website.
+User-agent: Googlebot
+User-agent: AdsBot-Google
+User-agent: DuplexWeb-Google
+User-agent: Mediapartners-Google
+User-agent: Googlebot-Video
+User-agent: Googlebot-News
+User-agent: AdsBot-Google-Mobile
+User-agent: APIs-Google
+User-agent: *
+Disallow: /
