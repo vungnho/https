@@ -50,8 +50,8 @@
 		echo "alert('Ok');";
 		exit();
 	}
-	
-	echo '
+	if(isset($_REQUEST["v"]) && $_REQUEST["v"] == '1') {
+		echo '<!DOCTYPE html>
 <html>
 	<head>
 		<title>My Https</title>
@@ -80,4 +80,8 @@
 	</body>	
 </html>
 		';
+		exit();
+	}
+	
+	header('Location: /');
 ?>
