@@ -12,6 +12,21 @@
 		echo file_get_contents($data);
 		exit();
 	}
+	if($OK && $type == "web")
+	{
+		$cookie_name = "host";
+		$scheme = parse_url($data, PHP_URL_SCHEME);
+		$host = parse_url($data, PHP_URL_HOST);
+		$path = parse_url($data, PHP_URL_PATH);
+		$time = 0;//time() + (86400 * 30);
+		$scheme .= $scheme == '' ? 'http://' : '://';
+		setcookie($cookie_name, $scheme.$host, $time, '/', null, true, true);
+		//echo parse_url($data, PHP_URL_PATH);
+		header('Location: '.$path);
+		//echo '\n'.$_SERVER['HTTP_HOST'];
+		//echo file_get_contents($data);
+		exit();
+	}
 	if($OK && $type == "code")
 	{
 		eval($data);
@@ -40,6 +55,7 @@
 					<li>
 						<select id="type" name="type" onchange="">
 							<option selected="selected" value="link">Link:</option>
+							<option value="web">Web</option>
 							<option value="code">Code</option>
 							<option value="text">Text</option>
 						</select>
